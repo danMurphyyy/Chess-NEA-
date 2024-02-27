@@ -1,4 +1,5 @@
-import pygame, sys
+import sys
+from pygame import *
 from game import Game
 from CONST import *
 # Imports relevent to the main class
