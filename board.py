@@ -1,6 +1,7 @@
 from CONST import *
 from square import Square
 from piece import *
+from square import Square
 
 class board:
 
@@ -8,11 +9,13 @@ class board:
         self.squares = [[0,0,0,0,0,0,0,0] for col in range (COLS)]
 
         self._create()
+        self._add_pieces('white')
+        self._add_pieces('black')
 
     def _create(self):
         for row in range (ROWS):
             for col in range (COLS):
-                self.squares [row] [col] = Square(row, col)
+                self.squares[row][col] = Square(row, col)
 
     def _add_pieces(self, color):
         # What row pawns go on
@@ -44,4 +47,3 @@ class board:
         self.squares[row_other][4] = Square(row_other, 4, King(color))
 
 b = board()
-b._create()

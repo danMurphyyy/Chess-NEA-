@@ -1,7 +1,8 @@
 import sys
-from pygame import *
+import pygame
 from game import Game
 from CONST import *
+from board import board
 # Imports relevent to the main class
 
 class main:
@@ -13,13 +14,19 @@ class main:
         # title of window
         self.game = Game()
         # game class
+        self.board = board
 
     def mainloop(self):
+
+        screen = self.screen
+        game = self.game
+
         while True:
         # Loops indefinatley 
 
-            self.game.show_bg(self.screen)
-            # calls the method to show the board from the game class
+            Game.show_bg(self, screen)
+            Game.show_pieces(self, screen)
+            # calls the method to show the board and pieces from the game class
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
