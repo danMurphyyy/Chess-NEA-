@@ -25,8 +25,8 @@ class Game:
     def show_pieces(self, surface):
         for row in range(ROWS):
             for col in range(COLS):
-                if self.board.squares[row][col].has_piece():
-                    piece = self.board.squares[row][col].piece
+                if self.board.squares([row],[col]).has_piece():
+                    piece = self.board.squares([row],[col]).piece
                     try:
                         img = pygame.image.load(piece.texture)
                     except pygame.error as e:
