@@ -5,7 +5,7 @@ from board import board
 
 class Game:
     def __init__(self):
-        self.board = board
+        self.board = board()
 # This initilises the attributes of the class
     
     def show_bg(self, surface):
@@ -23,12 +23,16 @@ class Game:
     # This method creates and shows the board using pygame
     
     def show_pieces(self, surface):
-        for row in range (ROWS):
-            for col in range (COLS):
+        for row in range(ROWS):
+            for col in range(COLS):
                 if self.board.squares[row][col].has_piece():
                     piece = self.board.squares[row][col].piece
-
-                    img = pygame.image.load(piece.texture)
+                    try:
+                        img = pygame.image.load(piece.texture)
+                    except pygame.error as e:
+                        print(f"Error loading image for {piece}: {e}")
+                        continue
+                    
                     img_centre = col * SQSIZE + SQSIZE // 2
-                    piece.texture_rect = img.get_rect(centre = img_centre)
+                    piece.texture_rect = img.get_rect(center=(img_centre, row * SQSIZE + SQSIZE // 2))
                     surface.blit(img, piece.texture_rect)

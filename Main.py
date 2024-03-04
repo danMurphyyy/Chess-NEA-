@@ -10,7 +10,7 @@ class main:
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         # size of window
-        pygame.display.set_caption('Chess')
+        pygame.display.set_caption('Chess')  
         # title of window
         self.game = Game()
         # game class

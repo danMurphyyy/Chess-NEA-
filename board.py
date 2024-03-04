@@ -7,6 +7,7 @@ class board:
 
     def __init__(self):
         self.squares = [[0,0,0,0,0,0,0,0] for col in range (COLS)]
+        squares = self.squares
 
         self._create()
         self._add_pieces('white')
