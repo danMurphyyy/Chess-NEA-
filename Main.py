@@ -14,7 +14,7 @@ class main:
         # title of window
         self.game = Game()
         # game class
-        self.board = board
+        self.board = board()
 
     def mainloop(self):
 
