@@ -20,7 +20,7 @@ class board:
 
     def _add_pieces(self, color):
         # What row pawns go on
-        if color == 'White':
+        if color == 'white':
             row_pawn, row_other = (6, 7)
         else:
             row_pawn, row_other = (1, 0)

@@ -27,11 +27,7 @@ class Game:
             for col in range(COLS):
                 if self.board.squares[row][col].has_piece():
                     piece = self.board.squares[row][col].piece
-                    try:
-                        img = pygame.image.load(piece.texture)
-                    except pygame.error as e:
-                        print(f"Error loading image for {piece}: {e}")
-                        continue
+                    img = pygame.image.load(piece.texture)
                     
                     img_centre = col * SQSIZE + SQSIZE // 2
                     piece.texture_rect = img.get_rect(center=(img_centre, row * SQSIZE + SQSIZE // 2))

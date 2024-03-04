@@ -29,6 +29,10 @@ class main:
             # calls the method to show the board and pieces from the game class
 
             for event in pygame.event.get():
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    pass
+
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
