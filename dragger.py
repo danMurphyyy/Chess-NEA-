@@ -11,6 +11,9 @@ class Dragger:
         self.initialRow = 0
         self.initialCol = 0
 
+    def update_blit(self, surface):
+        pass
+
     def update_mouse(self, pos):
         self.mouseX, self.mouseY = pos # Will store position as a tuple (X,Y)
 

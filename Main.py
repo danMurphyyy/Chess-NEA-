@@ -43,10 +43,12 @@ class main:
                     if board.squares[clickedRow][clickedCol].has_piece():
                         piece = board.squares[clickedRow][clickedCol].piece
                         dragger.save_initial(event.pos)
+                        dragger.drag_piece(piece)
 
                 # Mouse Motion
                 elif event.type == pygame.MOUSEMOTION:
-                    pass
+                    if dragger.dragging:
+                        dragger.update_blit(screen)
 
                 # Mouse released
                 elif event.type == pygame.MOUSEBUTTONUP:
