@@ -1,11 +1,13 @@
 from CONST import *
 import pygame
 from board import board
+from dragger import Dragger
 # This imports pygame and attributes from the relevent classes
 
 class Game:
     def __init__(self):
         self.board = board()
+        self.dragger = Dragger()
 # This initilises the attributes of the class
     
     def show_bg(self, surface):

@@ -20,6 +20,7 @@ class main:
 
         screen = self.screen
         game = self.game
+        dragger = self.game.dragger
 
         while True:
         # Loops indefinatley 
@@ -30,10 +31,20 @@ class main:
 
             for event in pygame.event.get():
 
+                # Mouse Pressed
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pass
 
-                if event.type == pygame.QUIT:
+                # Mouse Motion
+                elif event.type == pygame.MOUSEMOTION:
+                    pass
+
+                # Mouse released
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    pass
+
+                # Quit Application
+                elif event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 # If statement in a for loop to exit out of pygame when cross is clicked
