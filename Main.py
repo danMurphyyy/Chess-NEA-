@@ -30,6 +30,9 @@ class main:
             Game.show_pieces(self, screen)
             # calls the method to show the board and pieces from the game class
 
+            if dragger.dragging:
+                dragger.update_blit(screen)
+
             for event in pygame.event.get():
 
                 # Mouse Pressed
@@ -48,11 +51,13 @@ class main:
                 # Mouse Motion
                 elif event.type == pygame.MOUSEMOTION:
                     if dragger.dragging:
+                        dragger.update_mouse(event.pos)
                         dragger.update_blit(screen)
+
 
                 # Mouse released
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    pass
+                    dragger.undrag_piece()
 
                 # Quit Application
                 elif event.type == pygame.QUIT:
