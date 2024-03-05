@@ -21,6 +21,7 @@ class main:
         screen = self.screen
         game = self.game
         dragger = self.game.dragger
+        board = self.game.board
 
         while True:
         # Loops indefinatley 
@@ -34,7 +35,14 @@ class main:
                 # Mouse Pressed
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     dragger.update_mouse(event.pos)
-                    print(event.pos)
+
+                    clickedRow = dragger.mouseY // SQSIZE
+                    clickedCol = dragger.mouseX // SQSIZE
+
+                    # Does clicked square have a piece
+                    if board.squares[clickedRow][clickedCol].has_piece():
+                        piece = board.squares[clickedRow][clickedCol].piece
+                        dragger.save_initial(event.pos)
 
                 # Mouse Motion
                 elif event.type == pygame.MOUSEMOTION:
