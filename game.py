@@ -31,7 +31,7 @@ class Game:
                     piece = self.board.squares[row][col].piece
                     
                     # All Pieces
-                    if piece 
+                    if piece is not self.dragger.piece:
                     img = pygame.image.load(piece.texture)     
                     img_centre = col * SQSIZE + SQSIZE // 2
                     piece.texture_rect = img.get_rect(center=(img_centre, row * SQSIZE + SQSIZE // 2))
