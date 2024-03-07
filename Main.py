@@ -3,6 +3,7 @@ import pygame
 from game import Game
 from CONST import *
 from board import board
+from dragger import Dragger
 # Imports relevent to the main class
 
 class main:
@@ -15,6 +16,8 @@ class main:
         self.game = Game()
         # game class
         self.board = board()
+        # dragger class
+        self.dragger = Dragger()
 
     def mainloop(self):
 
@@ -25,7 +28,7 @@ class main:
 
         while True:
         # Loops indefinatley 
-
+            
             Game.show_bg(self, screen)
             Game.show_pieces(self, screen)
             # calls the method to show the board and pieces from the game class
