@@ -1,7 +1,8 @@
-from CONST import *
 import pygame
+from CONST import *
 from board import board
 from dragger import Dragger
+from square import Square
 # This imports pygame and attributes from the relevent classes
 
 class Game:
@@ -30,8 +31,11 @@ class Game:
                 if self.board.squares[row][col].has_piece():
                     piece = self.board.squares[row][col].piece
                     
+                    if piece == self.dragger.piece:
+                        pass
+
                     # All Pieces
-                    if piece is not self.dragger.piece:
+                    else:
                         img = pygame.image.load(piece.texture)     
                         img_centre = col * SQSIZE + SQSIZE // 2
                         piece.texture_rect = img.get_rect(center=(img_centre, row * SQSIZE + SQSIZE // 2))

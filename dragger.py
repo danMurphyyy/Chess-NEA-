@@ -24,6 +24,8 @@ class Dragger:
 
         surface.blit(img, self.piece.texture_rect)
 
+    # Other Methods
+
     def update_mouse(self, pos):
         self.mouseX, self.mouseY = pos # Will store position as a tuple (X,Y)
 

@@ -16,14 +16,14 @@ class main:
         self.game = Game()
         # game class
         self.board = board()
-        # dragger class
-        self.dragger = Dragger()
+        # Dragger
+
 
     def mainloop(self):
 
+        dragger = self.game.dragger
         screen = self.screen
         game = self.game
-        dragger = self.game.dragger
         board = self.game.board
 
         while True:
