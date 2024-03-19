@@ -1,78 +1,79 @@
-import sys
 import pygame
-from game import Game
-from CONST import *
-from board import board
-from dragger import Dragger
-# Imports relevent to the main class
+import sys
 
-class main:
+from CONST import *
+from game import Game
+from square import Square
+
+class Main:
+
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        # size of window
-        pygame.display.set_caption('Chess')  
-        # title of window
+        self.screen = pygame.display.set_mode( (WIDTH, HEIGHT) )
+        pygame.display.set_caption('Chess')
         self.game = Game()
-        # game class
-        self.board = board()
-        # Dragger
-
 
     def mainloop(self):
-
-        dragger = self.game.dragger
+        
         screen = self.screen
         game = self.game
         board = self.game.board
+        dragger = self.game.dragger
 
         while True:
-        # Loops indefinatley 
-            
-            Game.show_bg(self, screen)
-            Game.show_pieces(self, screen)
-            # calls the method to show the board and pieces from the game class
+            # show methods
+            game.show_bg(screen)
+            game.show_pieces(screen)
 
             if dragger.dragging:
                 dragger.update_blit(screen)
 
             for event in pygame.event.get():
 
-                # Mouse Pressed
+                # click
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     dragger.update_mouse(event.pos)
 
-                    clickedRow = dragger.mouseY // SQSIZE
-                    clickedCol = dragger.mouseX // SQSIZE
+                    clicked_row = dragger.mouseY // SQSIZE
+                    clicked_col = dragger.mouseX // SQSIZE
 
-                    # Does clicked square have a piece
-                    if board.squares[clickedRow][clickedCol].has_piece():
-                        piece = board.squares[clickedRow][clickedCol].piece
+                    # if clicked square has a piece ?
+                    if board.squares[clicked_row][clicked_col].has_piece():
+                        piece = board.squares[clicked_row][clicked_col].piece
                         dragger.save_initial(event.pos)
                         dragger.drag_piece(piece)
-
-                # Mouse Motion
+                        game.show_bg(screen)
+                        game.show_pieces(screen)
+                
+                # mouse motion
                 elif event.type == pygame.MOUSEMOTION:
+
                     if dragger.dragging:
                         dragger.update_mouse(event.pos)
+                        # show methods
+                        game.show_bg(screen)
+                        game.show_pieces(screen)
                         dragger.update_blit(screen)
-
-
-                # Mouse released
+                
+                # click release
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    dragger.undrag_piece()
+                    
+                    if dragger.dragging:
+                        dragger.update_mouse(event.pos)
 
-                # Quit Application
+                        released_row = dragger.mouseY // SQSIZE
+                        released_col = dragger.mouseX // SQSIZE
+                    
+                    dragger.undrag_piece()
+                
+
+                # quit application
                 elif event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                # If statement in a for loop to exit out of pygame when cross is clicked
-
-
+            
             pygame.display.update()
 
 
-
-main = main()
+main = Main()
 main.mainloop()
-#calls the mainloop method so the game runs when the program is run
