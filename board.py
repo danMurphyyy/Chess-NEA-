@@ -35,6 +35,10 @@ class board:
 
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares(possible_move_row)(possible_move_col).isempty_or_rival(piece.color):
+                        # Create the squares of the move
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
+                        # create a new move
 
         if isinstance(piece, Pawn):
             pass
