@@ -2,6 +2,7 @@ from CONST import *
 from square import Square
 from piece import *
 from square import Square
+from move import Move
 
 class board:
 
@@ -39,6 +40,8 @@ class board:
                         initial = Square(row, col)
                         final = Square(possible_move_row, possible_move_col)
                         # create a new move
+                        move = Move(initial, final)
+                        piece.add_move(move)
 
         if isinstance(piece, Pawn):
             pass
