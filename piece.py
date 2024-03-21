@@ -5,7 +5,7 @@ class Piece:
         self.name = name
         self.color = color
 
-        if color == 'White':
+        if color == 'white':
             value_sign = 1
         else:
             value_sign = -1
@@ -27,7 +27,7 @@ class Piece:
 
 class Pawn(Piece):
     def __init__(self, color):
-        if color == 'White':
+        if color == 'white':
             self.dir = -1
         else: 
             self.dir = 1
