@@ -9,10 +9,30 @@ class board:
     def __init__(self):
         self.squares = [[0,0,0,0,0,0,0,0] for col in range (COLS)]
         squares = self.squares
-
+        self.last_move = None
         self._create()
         self._add_pieces('white')
         self._add_pieces('black')
+
+    def move(self, piece, move):
+        initial = move.initial
+        final = move.final
+
+        # Console board move update
+        self.squares[initial.row][initial.col].piece = None
+        self.squares[final.row][final.col].piece = piece
+
+        # move
+        piece.moved = True
+
+        # clear valid moves
+        piece.clear_moves()
+
+        # set last move
+        self.last_move = move
+
+    def valid_move(self, piece, move):
+        return move in piece.moves
 
     def calc_moves(self, piece, row, col):
         # This method will calculate all possible (valid) moves
@@ -124,6 +144,9 @@ class board:
                     possible_move_row, possible_move_col = possible_move_row + row_incr, possible_move_col + col_incr
                     
         def king_moves():
+            
+            # Normal Moves
+
             adjs = [
                 (row-1, col+0), # up
                 (row-1, col+1), # up-right
@@ -146,6 +169,14 @@ class board:
                         # create a new move
                         move = Move(initial, final)
                         piece.add_move(move)
+
+            # Castling moves
+                        
+            # Queen-side Castling
+                        
+            # King-side Castling
+                        
+            
 
         if isinstance(piece, Pawn):
             pawn_moves()
