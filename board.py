@@ -77,13 +77,13 @@ class board:
             ]
 
             for possible_move in possible_moves:
-                possible_possible_move_row, possible_move_col = possible_move
+                possible_move_row, possible_move_col = possible_move
 
-                if Square.in_range(possible_possible_move_row, possible_move_col):
-                    if self.squares[possible_possible_move_row][possible_move_col].isempty_or_rival(piece.color):
+                if Square.in_range(possible_move_row, possible_move_col):
+                    if self.squares[possible_move_row][possible_move_col].isempty_or_rival(piece.color):
                         # Create the squares of the move
                         initial = Square(row, col)
-                        final = Square(possible_possible_move_row, possible_move_col)
+                        final = Square(possible_move_row, possible_move_col)
                         # create a new move
                         move = Move(initial, final)
                         piece.add_move(move)
@@ -115,7 +115,7 @@ class board:
                             break
 
                         # has team piece
-                        if self.squares[possible_move_row][possible_move_col].has_team_piece():
+                        if self.squares[possible_move_row][possible_move_col].has_team_piece(piece.color):
                             break
                     else:
                         break
@@ -123,7 +123,29 @@ class board:
                     # incrementing incrs
                     possible_move_row, possible_move_col = possible_move_row + row_incr, possible_move_col + col_incr
                     
+        def king_moves():
+            adjs = [
+                (row-1, col+0), # up
+                (row-1, col+1), # up-right
+                (row+0, col+1), # right
+                (row+1, col+1), # down-right
+                (row+1, col+0), # down
+                (row+1, col-1), # down-left
+                (row+0, col-1), # left
+                (row-1, col-1), # up-left
+            ]
 
+            for possible_move in adjs:
+                possible_move_row, possible_move_col = possible_move
+
+                if Square.in_range(possible_move_row,possible_move_col):
+                    if self. squares[possible_move_row][possible_move_col].isempty_or_rival(piece.color):
+                        # Create the squares of the move
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
+                        # create a new move
+                        move = Move(initial, final)
+                        piece.add_move(move)
 
         if isinstance(piece, Pawn):
             pawn_moves()
@@ -136,15 +158,15 @@ class board:
                 (-1, 1), # up-right
                 (-1, -1), # up-left
                 (1, 1), # down-right
-                (1, -1) # down-left
+                (1, -1), # down-left
             ])
 
         elif isinstance(piece, Rook):
             straight_line_moves([
-                (1, 0) # down
-                (-1, 0) # up
-                (0, 1) # right
-                (0, -1) # left
+                (1, 0), # down
+                (-1, 0), # up
+                (0, 1), # right
+                (0, -1), # left
             ])
 
         elif isinstance(piece, Queen):
@@ -152,15 +174,15 @@ class board:
                 (-1, 1), # up-right
                 (-1, -1), # up-left
                 (1, 1), # down-right
-                (1, -1) # down-left
-                (1, 0) # down
-                (-1, 0) # up
-                (0, 1) # right
-                (0, -1) # left
+                (1, -1), # down-left
+                (1, 0), # down
+                (-1, 0), # up
+                (0, 1), # right
+                (0, -1), # left
             ])
 
         elif isinstance(piece, King):
-            pass
+            king_moves()
 
     def _create(self):
         for row in range (ROWS):
