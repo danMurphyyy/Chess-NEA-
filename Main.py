@@ -89,7 +89,10 @@ class Main:
 
                         # Is it a valid move
                         if board.valid_move(dragger.piece, move):
+                            captured = board.squares[released_row][released_col].has_piece()
                             board.move(dragger.piece, move)
+                            # sounds
+                            game.sound_effect(captured)
                             # show methods
                             game.show_bg(screen)
                             game.show_pieces(screen)
@@ -99,7 +102,7 @@ class Main:
                     dragger.undrag_piece()
 
                 # key press
-                elif event.key == pygame.KEYDOWN:
+                elif event.type == pygame.KEYDOWN:
 
                     # changing themes
                     if event.key == pygame.K_t:
