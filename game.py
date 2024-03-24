@@ -30,6 +30,17 @@ class Game:
                 rect = (col*SQSIZE, row*SQSIZE, SQSIZE, SQSIZE)
                 # This displays the pygame rectangle 
                 pygame.draw.rect (surface, color, rect)
+
+                # row coordinates
+                if col == 0:
+                    # color
+                    color = theme.bg.dark if row % 2 == 0 else theme.bg.light
+                    #label
+                    lbl = self.config.font.render(str(ROWS-row), 1, color)
+                    lbl_pos = (5, 5+row*SQSIZE)
+                    #blit
+                    surface.blit(lbl, color, lbl_pos)
+
     # This method creates and shows the board using pygame
     
     def show_pieces(self, surface):
