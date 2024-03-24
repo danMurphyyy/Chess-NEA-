@@ -24,6 +24,7 @@ class Main:
         while True:
             # show methods
             game.show_bg(screen)
+            game.show_last_move(screen)
             game.show_moves(screen)
             game.show_pieces(screen)
 
@@ -49,6 +50,7 @@ class Main:
                             dragger.drag_piece(piece)
                             # Show methods
                             game.show_bg(screen)
+                            game.show_last_move(screen)
                             game.show_moves(screen)
                             game.show_pieces(screen)
                 
@@ -59,6 +61,7 @@ class Main:
                         dragger.update_mouse(event.pos)
                         # show methods
                         game.show_bg(screen)
+                        game.show_last_move(screen)
                         game.show_moves(screen)
                         game.show_pieces(screen)
                         dragger.update_blit(screen)

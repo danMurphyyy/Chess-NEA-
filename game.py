@@ -54,6 +54,19 @@ class Game:
                 #blit
                 pygame.draw.rect(surface, color, rect)
 
+    def show_last_move(self, surface):
+        if self.board.last_move:
+            initial = self.board.last_move.initial
+            final = self.board.last_move.final
+
+            for pos in [initial, final]:
+                # color
+                color = (244, 247, 116) if (pos.row + pos.col) % 2 == 0 else (172, 193, 51)
+                # rect
+                rect = (pos.col * SQSIZE, pos.col * SQSIZE, SQSIZE, SQSIZE)
+                # blit
+                pygame.draw.rect(surface, color, rect)
+
     # other methods
                 
     def next_turn(self):
